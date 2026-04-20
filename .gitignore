@@ -1,0 +1,14 @@
+# SAM Settings
+samconfig.toml
+
+# SAM build artifacts
+.aws-sam/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+
