@@ -2,6 +2,9 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 制限
+- 秘密情報を決してGit管理下に置かないこと
+
 ## コマンド
 
 uv でプロジェクトの Python バージョン（3.12）を管理しているため、`sam` コマンドは `uv run` 経由で実行する。
