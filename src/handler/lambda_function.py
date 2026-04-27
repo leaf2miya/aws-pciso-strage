@@ -9,7 +9,7 @@ def lambda_handler(event, context):
     for record in event["Records"]:
         s3_info = record["s3"]
         object_key = s3_info["object"]["key"]
-        company, soft, _ = urllib.parse.unquote(object_key).split("/", 3)
+        company, soft, _ = urllib.parse.unquote(object_key).split("/", 2)
         response = table.put_item(
             Item={
                 "company": company,
