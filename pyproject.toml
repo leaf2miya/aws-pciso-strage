@@ -1,0 +1,13 @@
+[project]
+name = "aws-pciso-strage"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "boto3>=1.42.96",
+    "pytest>=9.0.3",
+]
