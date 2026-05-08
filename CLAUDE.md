@@ -42,7 +42,7 @@ S3
 
 ## SSM パラメータ
 
-デプロイ前に AWS Systems Manager → Parameter Store で以下のパラメータを SecureString で登録すること。
+デプロイ前に AWS Systems Manager → Parameter Store で以下のパラメータを String で登録すること。
 
 | パラメータパス | 説明 |
 |---|---|
@@ -53,7 +53,7 @@ S3
 | `/pciso-strage/dev/dynamodb-table-name` | dev 環境の DynamoDB テーブル名 |
 | `/pciso-strage/dev/lambda-role-arn` | dev 環境の Lambda 実行ロール ARN |
 
-`sam deploy` 実行 IAM ユーザー/ロールには `ssm:GetParameters` および SecureString 復号用の `kms:Decrypt` 権限が必要。
+`sam deploy` 実行 IAM ユーザー/ロールには `ssm:GetParameters` 権限が必要。
 
 ## 既存リソースとの関係
 
