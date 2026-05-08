@@ -3,12 +3,10 @@ Transform: AWS::Serverless-2016-10-31
 Description: S3 upload event handler - extracts path components and stores to DynamoDB
 
 Parameters:
-  S3BucketName:
+  Env:
     Type: String
-  DynamoDBTableName:
-    Type: String
-  LambdaRoleArn:
-    Type: String
+    Default: dev
+    AllowedValues: [prd, dev]
 
 Resources:
   S3UploadHandlerFunction:
@@ -19,12 +17,12 @@ Resources:
       Handler: lambda_function.lambda_handler
       Runtime: python3.12
       CodeUri: src/handler/
-      Role: !Ref LambdaRoleArn
+      Role: !Sub '{{resolve:ssm:/pciso-strage/${Env}/lambda-role-arn}}'
       Timeout: 5
       AutoPublishAlias: live
       Environment:
         Variables:
-          DYNAMODB_TABLE: !Ref DynamoDBTableName
+          DYNAMODB_TABLE: !Sub '{{resolve:ssm:/pciso-strage/${Env}/dynamodb-table-name}}'
 
   S3InvokeLambdaPermission:
     Type: AWS::Lambda::Permission
@@ -34,4 +32,4 @@ Resources:
       FunctionName: !GetAtt S3UploadHandlerFunction.Arn
       Principal: s3.amazonaws.com
       SourceAccount: !Ref AWS::AccountId
-      SourceArn: !Sub 'arn:aws:s3:::${S3BucketName}'
+      SourceArn: !Sub 'arn:aws:s3:::{{resolve:ssm:/pciso-strage/${Env}/s3-bucket-name}}'
