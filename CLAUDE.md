@@ -46,12 +46,12 @@ S3
 
 | パラメータパス | 説明 |
 |---|---|
-| `/aws-pciso-strage/prd/s3-bucket-name` | prd 環境の S3 バケット名 |
-| `/aws-pciso-strage/prd/dynamodb-table-name` | prd 環境の DynamoDB テーブル名 |
-| `/aws-pciso-strage/prd/lambda-role-arn` | prd 環境の Lambda 実行ロール ARN |
-| `/aws-pciso-strage/dev/s3-bucket-name` | dev 環境の S3 バケット名 |
-| `/aws-pciso-strage/dev/dynamodb-table-name` | dev 環境の DynamoDB テーブル名 |
-| `/aws-pciso-strage/dev/lambda-role-arn` | dev 環境の Lambda 実行ロール ARN |
+| `/pciso-strage/prd/s3-bucket-name` | prd 環境の S3 バケット名 |
+| `/pciso-strage/prd/dynamodb-table-name` | prd 環境の DynamoDB テーブル名 |
+| `/pciso-strage/prd/lambda-role-arn` | prd 環境の Lambda 実行ロール ARN |
+| `/pciso-strage/dev/s3-bucket-name` | dev 環境の S3 バケット名 |
+| `/pciso-strage/dev/dynamodb-table-name` | dev 環境の DynamoDB テーブル名 |
+| `/pciso-strage/dev/lambda-role-arn` | dev 環境の Lambda 実行ロール ARN |
 
 `sam deploy` 実行 IAM ユーザー/ロールには `ssm:GetParameters` および SecureString 復号用の `kms:Decrypt` 権限が必要。
 

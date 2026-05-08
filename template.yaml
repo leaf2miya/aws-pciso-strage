@@ -17,12 +17,12 @@ Resources:
       Handler: lambda_function.lambda_handler
       Runtime: python3.12
       CodeUri: src/handler/
-      Role: !Sub '{{resolve:ssm-secure:/aws-pciso-strage/${Env}/lambda-role-arn}}'
+      Role: !Sub '{{resolve:ssm-secure:/pciso-strage/${Env}/lambda-role-arn}}'
       Timeout: 5
       AutoPublishAlias: live
       Environment:
         Variables:
-          DYNAMODB_TABLE: !Sub '{{resolve:ssm-secure:/aws-pciso-strage/${Env}/dynamodb-table-name}}'
+          DYNAMODB_TABLE: !Sub '{{resolve:ssm-secure:/pciso-strage/${Env}/dynamodb-table-name}}'
 
   S3InvokeLambdaPermission:
     Type: AWS::Lambda::Permission
@@ -32,4 +32,4 @@ Resources:
       FunctionName: !GetAtt S3UploadHandlerFunction.Arn
       Principal: s3.amazonaws.com
       SourceAccount: !Ref AWS::AccountId
-      SourceArn: !Sub 'arn:aws:s3:::{{resolve:ssm-secure:/aws-pciso-strage/${Env}/s3-bucket-name}}'
+      SourceArn: !Sub 'arn:aws:s3:::{{resolve:ssm-secure:/pciso-strage/${Env}/s3-bucket-name}}'
