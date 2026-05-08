@@ -40,6 +40,21 @@ S3
                     └── SK: soft (String)
 ```
 
+## SSM パラメータ
+
+デプロイ前に AWS Systems Manager → Parameter Store で以下のパラメータを SecureString で登録すること。
+
+| パラメータパス | 説明 |
+|---|---|
+| `/aws-pciso-strage/prd/s3-bucket-name` | prd 環境の S3 バケット名 |
+| `/aws-pciso-strage/prd/dynamodb-table-name` | prd 環境の DynamoDB テーブル名 |
+| `/aws-pciso-strage/prd/lambda-role-arn` | prd 環境の Lambda 実行ロール ARN |
+| `/aws-pciso-strage/dev/s3-bucket-name` | dev 環境の S3 バケット名 |
+| `/aws-pciso-strage/dev/dynamodb-table-name` | dev 環境の DynamoDB テーブル名 |
+| `/aws-pciso-strage/dev/lambda-role-arn` | dev 環境の Lambda 実行ロール ARN |
+
+`sam deploy` 実行 IAM ユーザー/ロールには `ssm:GetParameters` および SecureString 復号用の `kms:Decrypt` 権限が必要。
+
 ## 既存リソースとの関係
 
 SAM テンプレートは Lambda 関数と Lambda への S3 実行権限のみを管理する。S3 バケット・DynamoDB テーブルは既存リソースのため SAM スタック外で管理されており、**S3 バケットのイベント通知設定は AWS コンソールまたは CLI で手動設定が必要**。
